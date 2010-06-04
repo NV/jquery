@@ -697,6 +697,12 @@ jQuery.extend({
 			proxy.guid = fn.guid = fn.guid || proxy.guid || jQuery.guid++;
 		}
 
+		if ( proxy && fn ) {
+			proxy.toString = function() {
+				return fn.toString();
+			};
+		}
+
 		// So proxy can be declared as an argument
 		return proxy;
 	},

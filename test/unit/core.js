@@ -794,7 +794,7 @@ test("jQuery.isEmptyObject", function(){
 });
 
 test("jQuery.proxy", function(){
-	expect(4);
+	expect(5);
 
 	var test = function(){ equals( this, thisObject, "Make sure that scope is set properly." ); };
 	var thisObject = { foo: "bar", method: test };
@@ -810,6 +810,12 @@ test("jQuery.proxy", function(){
 
 	// Use the string shortcut
 	jQuery.proxy( thisObject, "method" )();
+
+	function dummy(){
+		return this;
+	}
+	equals( jQuery.proxy( dummy, {} ).toString(), dummy.toString(), "Make sure the proxied function looks like the original one." );
+
 });
 
 test("jQuery.parseJSON", function(){
